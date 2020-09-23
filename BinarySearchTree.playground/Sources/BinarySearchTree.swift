@@ -6,7 +6,6 @@ public struct BinarySearchTree<Element: Comparable> {
 
   public init() { }
 
-  
 }
 
 extension BinarySearchTree: CustomStringConvertible {
