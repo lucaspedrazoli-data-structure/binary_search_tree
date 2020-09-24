@@ -80,3 +80,22 @@ extension BinarySearchTree {
     return node
   }
 }
+
+extension BinarySearchTree: Equatable {
+  public static func == (lhs: BinarySearchTree<Element>, rhs: BinarySearchTree<Element>) -> Bool {
+    return isEqual(lhs.root, rhs.root)
+  }
+
+  private static func isEqual<Element: Equatable>(
+    _ node1: BinaryNode<Element>?,
+    _ node2: BinaryNode<Element>?) -> Bool {
+    guard let leftNode = node1,
+          let rightNode = node2 else {
+            return node1 == nil && node2 == nil
+    }
+    return leftNode.value == rightNode.value &&
+      isEqual(leftNode.leftChild, rightNode.leftChild) &&
+      isEqual(leftNode.rightChild, rightNode.rightChild)
+  }
+
+}
