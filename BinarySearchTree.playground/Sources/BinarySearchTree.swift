@@ -99,3 +99,20 @@ extension BinarySearchTree: Equatable {
   }
 
 }
+
+extension BinarySearchTree where Element: Hashable {
+
+  public func contains(_ subtree: BinarySearchTree) -> Bool {
+    var set: Set<Element> = []
+    root?.traverseInOrder {
+      set.insert($0)
+    }
+
+    var isEqual = true
+
+    subtree.root?.traverseInOrder {
+      isEqual = isEqual && set.contains($0)
+    }
+    return isEqual
+  }
+}
